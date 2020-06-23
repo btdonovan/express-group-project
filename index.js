@@ -172,5 +172,5 @@ app.get('/videosbyartistid/:artistId', (req, res) => {
 })
 
 app.get('/videosbyartistname/:artistName', (req, res) => {
-    res.send(tracks.filter(video => ((video.artistName.toLowerCase().includes(req.params.artistName.toLowerCase())) && (video.kind === 'music-video'))))
-  })
+  res.send(tracks.filter(video => ((video.artistName.toLowerCase().includes(req.params.artistName.toLowerCase())) && (video.kind === 'music-video'))))
+})
