@@ -56,23 +56,39 @@ app.patch('/songbyid/:trackId', (req, res) => {
 
 app.delete('/songbyid/:trackId', (req, res) => {
   let trackIndex
+  let found = false
   let track = songs.filter((song, index) => {
     if (song.trackId === Number(req.params.trackId)) {
       trackIndex = index
+      found = true
       return true
     } else {
       return false
     }
   })
-  songs.splice(trackIndex, 1)
+  if (found) {
+    songs.splice(trackIndex, 1)
+    res.send('confirmed')
+  } else {
+    res.send('failed')
+  }
 })
 
-app.get('/artistbyid/:artistId', (req, res) => {
-  let artistSongs = []
-  for (let i = 0; i < songs.length; i++) {
-    if (songs[i].artistId === Number(req.params.artistId)) {
-      artistSongs.push(songs[i])
-    }
-  }
-  res.send(artistSongs)
+app.get('/songsbyartistid/:artistId', (req, res) => {
+  res.send(songs.filter(song => ((song.artistId === Number(req.params.artistId)) && (song.kind === 'song'))))
 })
+
+app.put ('/newsong', (req, res) => {
+  let newSong = req.body
+  let oldSongs = songs.filter(song => song.trackId === req.body.trackId)
+  if (oldSongs.length === 0) {
+    songs.push(newSong)
+    res.send('song added')
+  } else {
+    res.send('no song added')
+  }
+})
+
+app.get('/songsbyartistname/:artistName', (req, res) => {
+    res.send(songs.filter(song => ((song.artistName.toLowerCase().includes(req.params.artistName.toLowerCase())) && (song.kind === 'song'))))
+  })
