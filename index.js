@@ -54,6 +54,19 @@ app.patch('/songbyid/:trackId', (req, res) => {
   songs[trackIndex] = newInfo
 })
 
+app.delete('/songbyid/:trackId', (req, res) => {
+  let trackIndex
+  let track = songs.filter((song, index) => {
+    if (song.trackId === Number(req.params.trackId)) {
+      trackIndex = index
+      return true
+    } else {
+      return false
+    }
+  })
+  songs.splice(trackIndex, 1)
+})
+
 app.get('/artistbyid/:artistId', (req, res) => {
   let artistSongs = []
   for (let i = 0; i < songs.length; i++) {
