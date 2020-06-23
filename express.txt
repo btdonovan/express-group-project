@@ -1,0 +1,9 @@
+tracks (songs, videos) need IDs (trackId), Names (trackName)
+Albums (collections) need IDs (collectionId), Names (collectionName)
+Artists need IDs (artistId), Names (artistName)
+
+
+tracks live under artists
+Artists live under root
+
+ArtistID
