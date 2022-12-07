@@ -10,6 +10,6 @@
   "author": "Alex Bocanegra & Ben Donovan & Jeremy Twidt",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.18.2"
   }
 }
